@@ -27,7 +27,7 @@ Route::get('/blog',[
   'as'=> 'blog.index'
 ]);
 
-Route::get('/blog/{post_id}',[
+Route::get('/blog/{post_id}&{end}',[
   'uses' => 'PostController@getsinglePost',
   'as' => 'blog.single'
 ]);
@@ -44,8 +44,62 @@ Route::get('/contact', [
 Route::group([
   'prefix' => '/admin'
 ], function(){
-  Route::get('/',[
-    'uses'=> 'AdminController@getIndex',
-    'as' => 'admin.index'
-  ]);
+    Route::get('/',[
+      'uses'=> 'AdminController@getIndex',
+      'as' => 'admin.index'
+    ]);
+    Route::get('/blog/posts',[
+      'uses' => 'PostController@getPostIndex',
+      'as' => 'admin.blog.index'
+    ]);
+
+
+    Route::get('/blog/categories',[
+        'uses' => 'CategoryController@getCategoryIndex',
+        'as' => 'admin.blog.categories'
+    ]);
+    // get individual post of frontend or backend
+    Route::get('blog/post/{post_id}&{end}',[
+      'uses' => 'PostController@getSinglePost',
+      'as' => 'admin.blog.post'
+    ]);
+    Route::get('blog/posts/create',[
+      'uses' => 'PostController@getCreatePost',
+      'as'  => 'admin.blog.create_post'
+    ]);
+
+    Route::post('/blog/post/create',[
+      'uses' => 'PostController@postCreatePost',
+      'as'  => 'admin.blog.post.create'
+    ]);
+
+    Route::post('/blog/category/create',[
+      'uses' => 'CategoryController@postCreateCategory',
+      'as'  => 'admin.blog.category.create'
+    ]);
+
+    Route::get('/blog/post/{post_id}/edit',[
+      'uses' => 'PostController@getUpdatePost',
+      'as'   => 'admin.blog.post.edit'
+    ]);
+
+    Route::post('/blog/post/update',[
+      'uses' => 'PostController@postUpdatePost',
+      'as'  => 'admin.blog.post.update'
+    ]);
+
+    Route::post('/blog/categories/update', [
+       'uses' => 'CategoryController@postUpdateCategory',
+        'as' => 'admin.blog.category.update'
+    ]);
+
+    Route::get('/blog/post/{post_id}/delete',[
+      'uses' => 'PostController@getDeletePost',
+      'as'  => 'admin.blog.post.delete'
+    ]);
+
+    Route::get('/blog/category/{category_id}/delete', [
+       'uses' => 'CategoryController@getDeleteCategory',
+        'as'   => 'admin.blog.category.delete'
+    ]);
 });

@@ -175,7 +175,7 @@ header.top-nav a:hover, header.top-nav a:active {
   font-size:  14px;
 }
 
-#post-admin,#category-admin,.list {
+#post-admin, #category-admin, .list {
   text-align: left;
   margin-bottom: 24px;
   padding: 8px 32px;
@@ -183,12 +183,13 @@ header.top-nav a:hover, header.top-nav a:active {
   background-color: #eee;
 }
 
-.list-article {
-  border: 1px solid black;
-  background-color: white;
-  padding: 16px;
-  margin: 32px 0;
+.list article {
+    border: 1px solid black;
+    background-color: white;
+    padding: 16px;
+    margin: 32px 0;
 }
+
 
 #category-admin form input {
   line-height: 25px;
